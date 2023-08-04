@@ -15,7 +15,7 @@ namespace Hologram.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your Application description page.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
