@@ -1,0 +1,37 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "User";
+}
+
+<h2>사용자 목록</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>닉네임</th>
+            <th>모바일</th>
+            <th>이메일</th>
+            <th>포인트</th>
+            <th>메모</th>
+            <th>등록일</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (System.Data.DataRow row in Model.Rows)
+        {
+            <tr>
+                <td>@row["no"]</td>
+                <td>@row["id"]</td>
+                <td>@row["name"]</td>
+                <td>@row["nickname"]</td>
+                <td>@row["mobile"]</td>
+                <td>@row["email"]</td>
+                <td>0</td>
+                <td>@row["reg_date"]</td>
+            </tr>
+        }
+    </tbody>
+</table>
