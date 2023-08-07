@@ -30,7 +30,7 @@ namespace Hologram.Controllers
             var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO tbl_user (id, password, name, nickname, mobile, email) VALUES (@id, @password, @name, @nickname, @mobile, @email)";
+                string query = "INSERT INTO tbl_admin (id, password, name, nickname, mobile, email) VALUES (@id, @password, @name, @nickname, @mobile, @email)";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
