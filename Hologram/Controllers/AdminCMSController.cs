@@ -138,6 +138,27 @@ namespace Hologram.Controllers
 
         #endregion
 
+        #region 사용자
+
+        public ActionResult User()
+        {
+            var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT no , id, name, nickname, mobile, email , reg_date FROM tbl_user";
+                var dt = new DataTable();
+
+                using (SqlDataAdapter da = new SqlDataAdapter(query, con))
+                {
+                    con.Open();
+                    da.Fill(dt);
+                }
+
+                return View("~/Views/AdminCMS/User.cshtml", dt);
+            }
+        }
+
+        #endregion
 
     }
 }
