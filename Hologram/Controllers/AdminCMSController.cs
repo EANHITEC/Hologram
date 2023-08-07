@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Hologram.Controllers
 {
@@ -14,6 +15,46 @@ namespace Hologram.Controllers
         public ActionResult Login()
         {
             return View("~/Views/AdminCMS/Login.cshtml");
+        }
+
+        [HttpPost]
+        public ActionResult Login(string id, string password)
+        {
+            var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM tbl_admin WHERE id = @id AND password = @password";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            FormsAuthentication.SetAuthCookie(id, false);
+                            return RedirectToAction("LoginSuccess");
+                        }
+                    }
+                }
+            }
+
+            ModelState.AddModelError("", "아이디 또는 비밀번호가 잘못되었습니다.");
+            return View("~/Views/AdminCMS/Login.cshtml");
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult LoginSuccess()
+        {
+            return View("~/Views/AdminCMS/Dashboard.cshtml");
         }
 
         #endregion
