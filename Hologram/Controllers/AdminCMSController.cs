@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -92,5 +93,27 @@ namespace Hologram.Controllers
         }
         #endregion
 
+        #region 디바이스
+
+        public ActionResult Devices()
+        {
+            var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT no, use_state, name, parts_code, serial_code FROM tbl_device";
+                var dt = new DataTable();
+
+                using (SqlDataAdapter da = new SqlDataAdapter(query, con))
+                {
+                    con.Open();
+                    da.Fill(dt);
+                }
+
+                return View("~/Views/AdminCMS/Device.cshtml", dt);
+            }
+        }
+
+
+        #endregion
     }
 }

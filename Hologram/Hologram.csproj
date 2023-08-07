@@ -178,7 +178,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\AdminCMS\Login.cshtml" />
     <Content Include="Views\AdminCMS\Register.cshtml" />
+    <Content Include="Views\AdminInfoCMS\AdminInfo.cshtml" />
     <Content Include="Views\AdminCMS\DashBoard.cshtml" />
+    <Content Include="Views\AdminCMS\Device.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

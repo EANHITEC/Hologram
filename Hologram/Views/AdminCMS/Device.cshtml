@@ -1,0 +1,30 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Devices";
+}
+
+<h2>Devices</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>상태</th>
+            <th>기기명</th>
+            <th>파트 번호</th>
+            <th>시리얼 번호</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (System.Data.DataRow row in Model.Rows)
+        {
+            <tr>
+                <td>@row["no"]</td>
+                <td>@(Convert.ToInt32(row["use_state"]) == 1 ? "작동 중" : "꺼짐")</td>
+                <td>@row["name"]</td>
+                <td>@row["parts_code"]</td>
+                <td>@row["serial_code"]</td>
+            </tr>
+        }
+    </tbody>
+</table>
