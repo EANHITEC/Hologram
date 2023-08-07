@@ -123,9 +123,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminCMSController.cs" />
+    <Compile Include="Controllers\AdminInfoCMSController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminInfoViewModel.cs" />
+    <Compile Include="Models\AdminListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -178,10 +181,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\AdminCMS\Login.cshtml" />
     <Content Include="Views\AdminCMS\Register.cshtml" />
+    <Content Include="Views\AdminInfoCMS\AdminInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
