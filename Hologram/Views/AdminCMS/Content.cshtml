@@ -1,0 +1,30 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "User Contents";
+}
+
+<h2>User Contents</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>미리보기</th>
+            <th>이름</th>
+            <th>원본타입</th>
+            <th>상태</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (System.Data.DataRow row in Model.Rows)
+        {
+            <tr>
+                <td>@row["no"]</td>
+                <td>미리보기</td>
+                <td>@row["title"]</td>
+                <td>@(Convert.ToInt32(row["contents_type"]) == 0 ? "2D" : (Convert.ToInt32(row["contents_type"]) == 1 ? "3D" : "3D Video"))</td>
+                <td>@(Convert.ToInt32(row["convert_state1"]) == 0 ? "준비중" : (Convert.ToInt32(row["convert_state1"]) == 1 ? "진행중" : "완료"))</td>
+            </tr>
+        }
+    </tbody>
+</table>
