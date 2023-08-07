@@ -10,11 +10,15 @@ namespace Hologram.Controllers
 {
     public class AdminCMSController : Controller
     {
+        #region 로그인
         public ActionResult Login()
         {
             return View("~/Views/AdminCMS/Login.cshtml");
         }
 
+        #endregion
+
+        #region 회원가입
         public ActionResult Register()
         {
             return View("~/Views/AdminCMS/Register.cshtml");
@@ -44,6 +48,7 @@ namespace Hologram.Controllers
 
             return RedirectToAction("Login");
         }
+        #endregion
 
     }
 }
