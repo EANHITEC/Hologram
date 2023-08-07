@@ -115,5 +115,29 @@ namespace Hologram.Controllers
 
 
         #endregion
+
+        #region 컨텐츠
+
+        public ActionResult Content()
+        {
+            var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT no, title, contents_type, convert_state1 FROM tbl_contents";
+                var dt = new DataTable();
+
+                using (SqlDataAdapter da = new SqlDataAdapter(query, con))
+                {
+                    con.Open();
+                    da.Fill(dt);
+                }
+
+                return View("~/Views/AdminCMS/Content.cshtml", dt);
+            }
+        }
+
+        #endregion
+
+
     }
 }
