@@ -25,21 +25,22 @@ namespace Hologram.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(string id, string password, string name, string nickname, string mobile, string email)
+        public ActionResult Register(string id, string password, string name, string mobile, string email, string dept, string job_title)
         {
             var connectionString = ConfigurationManager.AppSettings["ConnectionString"];
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO tbl_admin (id, password, name, nickname, mobile, email) VALUES (@id, @password, @name, @nickname, @mobile, @email)";
+                string query = "INSERT INTO tbl_admin (id, password, name, mobile, email, dept, job_title) VALUES (@id, @password, @name, @mobile, @email, @dept, @job_title)";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@password", password);
                     cmd.Parameters.AddWithValue("@name", name);
-                    cmd.Parameters.AddWithValue("@nickname", nickname);
                     cmd.Parameters.AddWithValue("@mobile", mobile);
                     cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@dept", dept);
+                    cmd.Parameters.AddWithValue("@job_title", job_title);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
